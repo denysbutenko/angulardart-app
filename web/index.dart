@@ -9,9 +9,17 @@ import 'package:angular/application_factory.dart';
 )
 class ChargeController {
   List<Charge> charges;
+  int amount;
+  String comment;
 
   ChargeController() {
     charges = _loadData();
+  }
+
+  void addCharge() {
+    charges.add(new Charge(amount, comment));
+    amount = null;
+    comment = '';
   }
 
   List<Charge> _loadData() {
