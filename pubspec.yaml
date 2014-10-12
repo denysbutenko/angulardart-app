@@ -1,0 +1,9 @@
+name: angulardart_app
+version: 0.0.0
+dependencies:
+  angular: 0.13.0
+  browser: any
+transformers:
+dart_sdk:
+- angular:
+  dart_sdk: "/usr/local/opt/dart/libexec"

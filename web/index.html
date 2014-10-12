@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/img/favicon.ico">
+
+    <title>Expanse Manager</title>
+
+    <link href="assets/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Dart Expanse Manager</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container -->
+    </nav>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Expanse Manager</h1>
+
+        <p class="lead">This awesome app writen with AngularDart</p>
+
+        <p><a class="btn btn-lg btn-primary disabled" href="#try" role="button">Try it now!</a></p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-7" style="padding-left:30px; padding-right:30px;">
+            <form class="form-horizontal" >
+                <div class="form-group form-group-lg">
+                    <input class="form-control" type="number" placeholder="Amount">
+                </div>
+                <div class="form-group form-group-lg">
+                    <textarea class="form-control" placeholder="Comment to charge"></textarea>
+                </div>
+                <div class="form-group form-group-lg">
+                    <button class="btn btn-primary btn-lg">Add charge</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            List of charges:
+            <ul class="">
+                <li>Charge 1</li>
+                <li>Charge 2</li>
+                <li>Charge 3</li>
+                <li>Charge 4</li>
+                <li>Charge 5</li>
+            </ul>
+            <hr>
+        </div>
+    </div>
+
+    <!--<div class="row">-->
+
+    <!--</div>-->
+
+</div>
+<!-- /container -->
+
+<script src="assets/components/jquery/dist/jquery.min.js"></script>
+<script src="assets/components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
