@@ -1,6 +1,12 @@
 body {
     padding-top: 80px;
 }
+
 .container {
     max-width: 800px;
+}
+
+.form-wrapper {
+    padding-left: 30px;
+    padding-right: 30px;
 }
