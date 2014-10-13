@@ -1,43 +1,81 @@
 library charge_list;
 
+import 'dart:html';
+import 'dart:convert';
 import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
 
-@Controller(
-    selector: '[charge-list]',
-    publishAs: 'ctrl'
-)
+@Controller(selector: '[charge-list]', publishAs: 'ctrl')
 class ChargeController {
+  Storage localStorage = window.localStorage;
   List<Charge> charges;
   int amount;
   String comment;
+  DateTime date = new DateTime.now();
 
   ChargeController() {
     charges = _loadData();
   }
 
   void addCharge() {
-    charges.add(new Charge(amount, comment));
+    DateTime new_date = new DateTime.now();
+    var ob = {
+        'amount' : amount, 'comment' : comment, 'date' : new_date.toString()
+    };
+    charges.add(new Charge.fromMap(ob));
+    saveChargesInLocalStore(charges);
+
     amount = null;
     comment = '';
   }
 
-  List<Charge> _loadData() {
-    return [
-        new Charge(5, 'Charge #1'),
-        new Charge(10, 'Charge #2'),
-        new Charge(15, 'Charge #3'),
-        new Charge(20, 'Charge #4'),
-        new Charge(25, 'Charge #5'),
-    ];
+  int getTotal() {
+    int total = 0;
+    for (var charge in charges) {
+      total += charge.amount;
+    }
+    return total;
   }
+
+  List<Charge> _loadData() {
+    List<Charge> charges = new List();
+    if (window.localStorage.containsKey('charges')) {
+      String json = window.localStorage['charges'];
+      List list = JSON.decode(json);
+      for (Map ob in list) {
+        Charge charge = new Charge.fromMap(ob);
+        charges.add(charge);
+      }
+    }
+    return charges;
+  }
+
+  Map _toEncodable(Charge charge) {
+    return {
+        'amount' : charge.amount, 'comment' : charge.comment, 'date' : charge.date
+    };
+  }
+
+  void saveChargesInLocalStore(List<Charge> charges) {
+    String json = JSON.encode(charges, toEncodable: _toEncodable);
+    print(json);
+    window.localStorage['charges'] = json;
+  }
+
 }
 
 class Charge {
   int amount;
   String comment;
+  DateTime date;
 
-  Charge(this.amount, this.comment);
+  factory Charge.fromMap(Map map) {
+    return new Charge._internal(map['amount'], map['comment'], map['date']);
+  }
+
+  Charge._internal(this.amount, this.comment, this.date);
+
+  Charge(this.amount, this.comment, this.date);
 }
 
 class ChargeModule extends Module {
@@ -47,7 +85,5 @@ class ChargeModule extends Module {
 }
 
 void main() {
-  applicationFactory()
-  .addModule(new ChargeModule())
-  .run();
+  applicationFactory().addModule(new ChargeModule()).run();
 }
